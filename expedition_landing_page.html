@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Bear Business Expedition - Your 15-Day Journey to Business Peak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 50%, #0f2027 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "🏔️";
+            font-size: 15rem;
+            position: absolute;
+            top: -3rem;
+            right: -5rem;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background: #ff9800;
+            color: white;
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(255, 152, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #f57c00;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 152, 0, 0.4);
+        }
+
+        .free-badge {
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section styling */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c5aa0;
+        }
+
+        /* What You'll Learn */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .week {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .week:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .week-number {
+            background: #2c5aa0;
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 2rem;
+            flex-shrink: 0;
+        }
+
+        .week-content h3 {
+            color: #2c5aa0;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .week-content p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.show {
+            max-height: 200px;
+        }
+
+        /* Value Props */
+        .value-props {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .week {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .week-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .section {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="free-badge">🎁 Completely FREE</div>
+            <h1>🏔️ Big Bear Business Expedition</h1>
+            <p class="subtitle">Your 15-Day Guided Journey to Business Peak</p>
+            <p class="description">Join fellow entrepreneurs on an exciting expedition to build your business from the ground up. No experience required - just bring your dreams and determination!</p>
+            <a href="#signup" class="cta-button">🎒 Start Your Expedition</a>
+        </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">What You'll Discover on Your Journey</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧭</span>
+                    <h3 class="feature-title">Crystal Clear Vision</h3>
+                    <p>Define your business purpose, identify your ideal customers, and create a compelling vision that guides every decision.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🗺️</span>
+                    <h3 class="feature-title">Proven Roadmap</h3>
+                    <p>Follow a step-by-step path from idea to launch, avoiding common pitfalls that stop most entrepreneurs cold.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚙️</span>
+                    <h3 class="feature-title">Real Systems</h3>
+                    <p>Build the foundation for a business that can grow and scale, not just a job that depends on you 24/7.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3 class="feature-title">Growth Strategy</h3>
+                    <p>Learn how to price your products, find customers, and build a business that generates real revenue.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🤝</span>
+                    <h3 class="feature-title">Expert Guidance</h3>
+                    <p>Get personal mentorship from Matt Vecchio, successful Big Bear business owner and Chamber member.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏆</span>
+                    <h3 class="feature-title">Chamber Membership</h3>
+                    <p>Complete the expedition and earn a FREE 4-week trial membership to the Big Bear Chamber of Commerce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Your 3-Week Expedition Map</h2>
+            <div class="timeline">
+                <div class="week">
+                    <div class="week-number">1</div>
+                    <div class="week-content">
+                        <h3>Gear Check (Foundation & Planning)</h3>
+                        <p>Pack your vision, read the market map, choose your route, check weather conditions, and set up base camp. You'll finish Week 1 with a solid business foundation and legal structure.</p>
+                    </div>
+                </div>
+                <div class="week">
+                    <div class="week-number">2</div>
+                    <div class="week-content">
+                        <h3>The Ascent (Launch & Operations)</h3>
+                        <p>Take your first steps up the mountain with MVP development, branding basics, marketing fundamentals, financial planning, and team building. Week 2 gets your business moving.</p>
+                    </div>
+                </div>
+                <div class="week">
+                    <div class="week-number">3</div>
+                    <div class="week-content">
+                        <h3>Reaching the Summit (Growth & Systems)</h3>
+                        <p>Build systems for safety and scale, read your business metrics, plan expansion, train your first team members, and celebrate your summit achievement with a 90-day growth plan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Props -->
+    <section class="value-props">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Why Join This Expedition?</h2>
+            <div class="value-grid">
+                <div class="value-item">
+                    <div class="value-number">15</div>
+                    <div class="value-text">Days of focused action</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">100%</div>
+                    <div class="value-text">Free to participate</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">5-7</div>
+                    <div class="value-text">Minutes of daily video training</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">$200+</div>
+                    <div class="value-text">Value in worksheets & tools</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Do I need any business experience to join?
+                    </div>
+                    <div class="faq-answer">
+                        Not at all! This expedition is designed for complete beginners. We start from the very basics and build up step by step. If you have a business idea (or even just the desire to start something), you're ready to begin.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How much time do I need each day?
+                    </div>
+                    <div class="faq-answer">
+                        Plan for 20-30 minutes total per day: 5-7 minutes for the video lesson, 10-15 minutes to complete the worksheet, and 10-15 minutes for the daily summit challenge. Everything is designed to fit into a busy schedule.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What if I miss a day or fall behind?
+                    </div>
+                    <div class="faq-answer">
+                        No problem! All materials remain available throughout the entire expedition and beyond. You can catch up at your own pace. The most important thing is to keep moving forward, even if you're not on the exact daily schedule.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Is this really free? What's the catch?
+                    </div>
+                    <div class="faq-answer">
+                        Yes, completely free! This is our gift to aspiring entrepreneurs in the Big Bear community. The only "catch" is that expedition graduates receive a free 4-week trial to the Big Bear Chamber of Commerce, which we hope you'll find valuable enough to continue.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What kind of business can I start with this program?
+                    </div>
+                    <div class="faq-answer">
+                        Any type! The principles we teach work for service businesses, product companies, online ventures, brick-and-mortar stores, and everything in between. The focus is on building strong fundamentals that apply to any business model.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Who is Matt Vecchio and why should I trust his guidance?
+                    </div>
+                    <div class="faq-answer">
+                        Matt is the owner of Mountain Room Escapes, a successful escape room business in Big Bear. He's also an active Chamber member who has helped multiple local entrepreneurs launch and grow their businesses. This expedition is based on real-world experience, not just theory.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What happens after I complete the expedition?
+                    </div>
+                    <div class="faq-answer">
+                        You'll receive an official Summit Certificate and a 4-week free trial to the Big Bear Chamber of Commerce. Plus, you'll have lifetime access to all expedition materials and be invited to exclusive quarterly "Summit Club" meetups for ongoing support.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Can I get support if I have questions during the expedition?
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! You can reply to any daily expedition email with questions, and Matt personally responds within 24 hours. Think of him as your personal expedition guide who's committed to helping you reach the summit.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-container">
+                <h2 style="color: #2c5aa0; margin-bottom: 1rem;">Ready to Start Your Journey?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #666;">Join the Big Bear Business Expedition and transform your business idea into reality. Your summit awaits!</p>
+                <a href="mailto:matt@bigbearchamber.com?subject=Big Bear Business Expedition Signup&body=Hi Matt! I'd like to join the Big Bear Business Expedition. Please sign me up!" class="cta-button">
+                    🚀 Start My Expedition Today
+                </a>
+                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                    <em>Next expedition starts Monday - limited spots available!</em>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const isOpen = answer.classList.contains('show');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(ans => {
+                ans.classList.remove('show');
+            });
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Toggle current FAQ
+            if (!isOpen) {
+                answer.classList.add('show');
+                element.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
