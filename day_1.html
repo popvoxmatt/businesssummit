@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: Packing Your Vision - Big Bear Business Expedition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Header matching Chamber style */
+        .header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 50%, #0f2027 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation breadcrumb */
+        .breadcrumb {
+            background: #fff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .breadcrumb a {
+            color: #2c5aa0;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Progress tracking */
+        .progress-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .progress-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c5aa0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .progress-day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .progress-day.completed .day-circle {
+            background: #28a745;
+            color: white;
+        }
+
+        .progress-day.current .day-circle {
+            background: #ffc107;
+            color: #333;
+            border: 3px solid #ff9800;
+        }
+
+        .progress-day.locked .day-circle {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+
+        .day-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-label {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Main content grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        /* Video section */
+        .video-section {
+            margin-bottom: 2rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .play-button::after {
+            content: "▶";
+            color: #2c5aa0;
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        .video-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .video-duration {
+            background: #28a745;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .trail-difficulty {
+            background: #17a2b8;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Content sections */
+        .content-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Challenge box */
+        .challenge-box {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .challenge-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-time {
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Download button */
+        .download-btn {
+            background: #28a745;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+        }
+
+        .download-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Sidebar navigation */
+        .nav-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+        }
+
+        .nav-week {
+            margin-bottom: 1.5rem;
+        }
+
+        .week-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .nav-day {
+            padding: 0.5rem 1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-day.completed {
+            border-left-color: #28a745;
+            background: #f8fff9;
+        }
+
+        .nav-day.current {
+            border-left-color: #ffc107;
+            background: #fffbf0;
+            font-weight: bold;
+        }
+
+        .nav-day.locked {
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .nav-day:hover:not(.locked) {
+            background: #f0f0f0;
+        }
+
+        /* Page navigation */
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .nav-btn {
+            background: #2c5aa0;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #1e3a5f;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .progress-bar {
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>🏔️ Day 1: Packing Your Vision</h1>
+        <p>Welcome to Base Camp! Let's start your journey to Business Peak.</p>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> > <a href="/business-expedition">Business Expedition</a> > Day 1: Packing Your Vision
+    </div>
+
+    <div class="container">
+        <!-- Progress Tracking -->
+        <div class="progress-section">
+            <div class="progress-title">📍 Your Expedition Progress</div>
+            <div class="progress-bar">
+                <div class="progress-day current">
+                    <div class="day-circle">1</div>
+                    <div class="day-label">Vision</div>
+                </div>
+                <div class="progress-day locked">
+                    <div class="day-circle">2</div>
+                    <div class="day-label">Map</div>
+                </div>
+                <div class="progress-day locked">
+                    <div class="day-circle">3</div>
+                    <div class="day-label">Route</div>
+                </div>
+                <div class="progress-day locked">
+                    <div class="day-circle">4</div>
+                    <div class="day-label">Weather</div>
+                </div>
+                <div class="progress-day locked">
+                    <div class="day-circle">5</div>
+                    <div class="day-label">Setup</div>
+                </div>
+                <!-- Continue for all 15 days -->
+                <div class="progress-day locked">
+                    <div class="day-circle">...</div>
+                    <div class="day-label">More</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Video Section -->
+                <div class="content-section">
+                    <div class="section-title">
+                        <span class="section-icon">🎥</span>
+                        Today's Expedition Training
+                    </div>
+                    
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <div class="play-button"></div>
+                            <div>Welcome to Base Camp + Vision Clarity Exercise</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-info">
+                        <div>
+                            <strong>Video:</strong> Welcome to Base Camp + Vision Clarity Exercise
+                        </div>
+                        <div>
+                            <span class="video-duration">6 min</span>
+                            <span class="trail-difficulty">Beginner</span>
+                        </div>
+                    </div>
+                    
+                    <p>Start your entrepreneurial journey by getting crystal clear on your vision. In this foundational lesson, you'll learn how to define your "why," identify your ideal customers, and create a compelling one-sentence vision that will guide every business decision you make.</p>
+                </div>
+
+                <!-- Worksheet Section -->
+                <div class="content-section">
+                    <div class="section-title">
+                        <span class="section-icon">📋</span>
+                        Trail Tools & Resources
+                    </div>
+                    
+                    <p>Your essential worksheet for today's expedition. This "Vision Compass" will help you navigate the key questions every successful entrepreneur must answer before taking their first step.</p>
+                    
+                    <a href="/downloads/Day-1-Vision-Compass-Worksheet.pdf" class="download-btn">
+                        📄 Download Vision Compass Worksheet
+                    </a>
+                    
+                    <p><small>PDF • 2 pages • Optimized for printing or digital completion</small></p>
+                </div>
+
+                <!-- Summit Challenge -->
+                <div class="content-section">
+                    <div class="section-title">
+                        <span class="section-icon">🚩</span>
+                        Today's Summit Challenge
+                    </div>
+                    
+                    <div class="challenge-box">
+                        <div class="challenge-title">Write Your One-Sentence Business Vision</div>
+                        <p>Using the Vision Compass worksheet, craft a clear, compelling one-sentence description of your business that answers: WHO you serve, WHAT problem you solve, and WHY it matters.</p>
+                        
+                        <p><strong>Example:</strong> "I help busy parents in Big Bear save time and create memories by providing convenient, high-quality family entertainment experiences."</p>
+                        
+                        <div class="challenge-time">⏱️ Estimated time: 20 minutes</div>
+                    </div>
+                    
+                    <p><strong>Pro Tip:</strong> Don't worry about making it perfect! Your vision will evolve as you climb higher. The goal today is to get started with clarity and direction.</p>
+                </div>
+
+                <!-- Page Navigation -->
+                <div class="page-nav">
+                    <div class="nav-btn disabled">← Previous Day</div>
+                    <a href="/business-expedition" class="nav-btn">📚 Course Home</a>
+                    <div class="nav-btn disabled">Next Day →</div>
+                </div>
+            </div>
+
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+                <div class="nav-title">📍 Expedition Map</div>
+                
+                <div class="nav-week">
+                    <div class="week-title">Week 1: Gear Check</div>
+                    <div class="nav-day current">✅ Day 1: Packing Your Vision</div>
+                    <div class="nav-day locked">🔒 Day 2: Reading the Map</div>
+                    <div class="nav-day locked">🔒 Day 3: Choosing Your Route</div>
+                    <div class="nav-day locked">🔒 Day 4: Weather Check</div>
+                    <div class="nav-day locked">🔒 Day 5: Base Camp Setup</div>
+                </div>
+                
+                <div class="nav-week">
+                    <div class="week-title">Week 2: The Ascent</div>
+                    <div class="nav-day locked">🔒 Day 6: First Steps</div>
+                    <div class="nav-day locked">🔒 Day 7: Trail Markers</div>
+                    <div class="nav-day locked">🔒 Day 8: Calling Base Camp</div>
+                    <div class="nav-day locked">🔒 Day 9: Managing Your Pack</div>
+                    <div class="nav-day locked">🔒 Day 10: Climbing Partners</div>
+                </div>
+                
+                <div class="nav-week">
+                    <div class="week-title">Week 3: The Summit</div>
+                    <div class="nav-day locked">🔒 Day 11: Rope Systems</div>
+                    <div class="nav-day locked">🔒 Day 12: Summit Conditions</div>
+                    <div class="nav-day locked">🔒 Day 13: New Territory</div>
+                    <div class="nav-day locked">🔒 Day 14: Training Others</div>
+                    <div class="nav-day locked">🔒 Day 15: Summit Celebration</div>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <strong>Questions?</strong><br>
+                    Email Matt directly:<br>
+                    <a href="mailto:matt@bigbearchamber.com">matt@bigbearchamber.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
